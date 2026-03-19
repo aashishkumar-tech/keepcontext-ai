@@ -4,6 +4,8 @@
 
 KeepContext AI stores project knowledge — conversations, code decisions, documentation — as vector embeddings in ChromaDB and provides semantic search to retrieve relevant context on demand.
 
+![KeepContext AI Overview](src/keepcontext-file.png)
+
 ## Who This Is For
 
 - Developers who want persistent project memory across coding sessions
