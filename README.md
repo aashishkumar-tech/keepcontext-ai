@@ -303,7 +303,6 @@ keepcontext-ai/
 
 - Ops docs index: [docs/README.md](docs/README.md)
 - Production launch checklist: [docs/PRODUCTION_GO_LIVE_CHECKLIST.md](docs/PRODUCTION_GO_LIVE_CHECKLIST.md)
-- Latest launch report: [docs/LAUNCH_REPORT_2026-03-19.md](docs/LAUNCH_REPORT_2026-03-19.md)
 - VS Code extension release checklist: [vscode-extension/RELEASE_CHECKLIST.md](vscode-extension/RELEASE_CHECKLIST.md)
 
 ## Tech Stack
