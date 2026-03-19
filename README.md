@@ -4,6 +4,36 @@
 
 KeepContext AI stores project knowledge — conversations, code decisions, documentation — as vector embeddings in ChromaDB and provides semantic search to retrieve relevant context on demand.
 
+## Who This Is For
+
+- Developers who want persistent project memory across coding sessions
+- Teams that need searchable technical decisions and implementation context
+- VS Code users who want context retrieval and agent workflows without leaving the editor
+
+## 60-Second Quick Start
+
+```bash
+git clone https://github.com/your-username/keepcontext-ai.git
+cd keepcontext-ai
+docker-compose up -d
+
+# In VS Code extension settings:
+# keepcontext.apiUrl = http://localhost:8003
+```
+
+Then run one command in VS Code Command Palette:
+
+- `KeepContext: Store Memory`
+
+If the command succeeds, your setup is working.
+
+## Install Paths
+
+| Path | Use when | Requirements | Typical setup time | Verify at |
+|------|----------|--------------|--------------------|-----------|
+| Local development | You are developing backend/extension code | Python 3.10+, Node 18+, Docker | 10-20 minutes | `http://localhost:8003/health` |
+| Deployed backend | You only want to use the extension against a live server | Node 18+ and a reachable KeepContext API URL | 5-10 minutes | `http://<your-server>/health` |
+
 ## Features (Phase 1)
 
 - 🧠 **Memory Storage** — Store text with type tags (conversation, code, decision, documentation)
@@ -86,10 +116,10 @@ docker-compose up chromadb -d
 ```bash
 make run
 # or directly:
-uvicorn keepcontext_ai.main:get_app --factory --reload --host 0.0.0.0 --port 8000
+uvicorn keepcontext_ai.main:get_app --factory --reload --host 0.0.0.0 --port 8003
 ```
 
-App will be available at **<http://localhost:8000>**
+App will be available at **<http://localhost:8003>**
 
 ### 5. Run tests
 
@@ -144,6 +174,16 @@ From the Command Palette, run:
 
 For complete extension details, see [vscode-extension/README.md](vscode-extension/README.md).
 
+## First Run Validation
+
+Use this checklist after setup:
+
+1. Health endpoint returns `200 OK`: `GET http://localhost:8003/health`
+2. You can store one memory via API or VS Code command
+3. `KeepContext: Query Context` returns at least one result
+4. `KeepContext: Ask Question` returns an answer in a new markdown tab
+5. `KeepContext: Run Agent Workflow` starts and displays a result panel
+
 ## API Endpoints
 
 | Method | Endpoint | Description |
@@ -167,7 +207,7 @@ For complete extension details, see [vscode-extension/README.md](vscode-extensio
 ### Example: Store a memory
 
 ```bash
-curl -X POST http://localhost:8000/api/v1/memory \
+curl -X POST http://localhost:8003/api/v1/memory \
   -H "Content-Type: application/json" \
   -d '{"content": "Auth uses JWT with RS256 signing", "memory_type": "decision"}'
 ```
@@ -175,10 +215,20 @@ curl -X POST http://localhost:8000/api/v1/memory \
 ### Example: Query context
 
 ```bash
-curl -X POST http://localhost:8000/api/v1/context/query \
+curl -X POST http://localhost:8003/api/v1/context/query \
   -H "Content-Type: application/json" \
   -d '{"query": "How does authentication work?", "top_k": 5}'
 ```
+
+## Troubleshooting
+
+| Symptom | Likely cause | Fix |
+|---------|--------------|-----|
+| VS Code shows backend connection errors | `keepcontext.apiUrl` points to wrong URL/port | Set `keepcontext.apiUrl` to `http://localhost:8003` (or your deployed URL) |
+| `/health` is unreachable | Backend containers not running | Run `docker-compose up -d` and recheck `http://localhost:8003/health` |
+| Ask/agent endpoints fail with auth/key errors | Missing `OPENAI_API_KEY` or `GROQ_API_KEY` | Add keys to `.env`, restart app |
+| Graph routes fail | Neo4j credentials or connection incorrect | Verify `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` in environment |
+| Extension commands run but no useful context is returned | No stored memories yet | Store at least one memory, then rerun query/ask |
 
 ## Project Structure
 
