@@ -10,22 +10,29 @@ KeepContext AI stores project knowledge — conversations, code decisions, docum
 - Teams that need searchable technical decisions and implementation context
 - VS Code users who want context retrieval and agent workflows without leaving the editor
 
-## 60-Second Quick Start
+## 60-Second Service Quick Start
+
+If you are consuming KeepContext AI as a service, you only need the API base URL.
 
 ```bash
-git clone https://github.com/your-username/keepcontext-ai.git
-cd keepcontext-ai
-docker-compose up -d
+# Replace with your deployed service URL
+BASE_URL=http://<your-service-host>:8003
 
-# In VS Code extension settings:
-# keepcontext.apiUrl = http://localhost:8003
+# 1) Health check
+curl "$BASE_URL/health"
+
+# 2) Store memory
+curl -X POST "$BASE_URL/api/v1/memory" \
+  -H "Content-Type: application/json" \
+  -d '{"content":"Auth uses JWT with RS256","memory_type":"decision"}'
+
+# 3) Query memory
+curl -X POST "$BASE_URL/api/v1/context/query" \
+  -H "Content-Type: application/json" \
+  -d '{"query":"How does authentication work?","top_k":5}'
 ```
 
-Then run one command in VS Code Command Palette:
-
-- `KeepContext: Store Memory`
-
-If the command succeeds, your setup is working.
+For VS Code usage, set `keepcontext.apiUrl` to your deployed service URL.
 
 ## Install Paths
 
@@ -66,7 +73,9 @@ If the command succeeds, your setup is working.
 - 💬 **Ask & Agent Commands** — Command palette integration for LLM answers and agent workflows
 - 📊 **Status Bar** — Live connection status to the backend
 
-## Quick Start
+## Self-Hosting Quick Start (Maintainers)
+
+Use this section only if you are running KeepContext AI infrastructure yourself.
 
 ### Prerequisites
 
@@ -129,7 +138,7 @@ make test
 pytest -v --cov=src --cov-report=term-missing
 ```
 
-## Use The VS Code Extension
+## Use The VS Code Extension (Service Consumer)
 
 The VS Code extension is the fastest way to store memories and query context while coding.
 
@@ -161,7 +170,7 @@ code --install-extension keepcontext-ai-0.1.0.vsix
 
 Open VS Code Settings and set:
 
-- `keepcontext.apiUrl`: `http://localhost:8003` (local backend) or your deployed API URL
+- `keepcontext.apiUrl`: your deployed KeepContext AI service URL
 
 ### 4. Start using commands
 
@@ -174,11 +183,11 @@ From the Command Palette, run:
 
 For complete extension details, see [vscode-extension/README.md](vscode-extension/README.md).
 
-## First Run Validation
+## Service Validation Checklist
 
-Use this checklist after setup:
+Use this checklist after service setup:
 
-1. Health endpoint returns `200 OK`: `GET http://localhost:8003/health`
+1. Health endpoint returns `200 OK`: `GET http://<your-service-host>:8003/health`
 2. You can store one memory via API or VS Code command
 3. `KeepContext: Query Context` returns at least one result
 4. `KeepContext: Ask Question` returns an answer in a new markdown tab
@@ -297,7 +306,7 @@ keepcontext-ai/
 
 ## Deployment
 
-- AWS free-tier guide: [deploy/aws/DEPLOY_AWS_FREE_TIER.md](deploy/aws/DEPLOY_AWS_FREE_TIER.md)
+- AWS self-host guide (maintainers/operators): [deploy/aws/DEPLOY_AWS_FREE_TIER.md](deploy/aws/DEPLOY_AWS_FREE_TIER.md)
 
 ## Documentation
 

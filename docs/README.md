@@ -4,6 +4,7 @@ This folder contains release and operations docs that are relevant for deploymen
 
 ## Available Documents
 
+- `SERVICE_CONSUMER_GUIDE.md` — how to use KeepContext AI as a hosted service consumer.
 - `PRODUCTION_GO_LIVE_CHECKLIST.md` — production readiness checklist with owners and evidence requirements.
 
 ## Related Docs Outside This Folder

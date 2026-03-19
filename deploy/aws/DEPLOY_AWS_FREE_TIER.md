@@ -1,4 +1,7 @@
-# Deploy KeepContext AI on AWS Free Tier
+# Deploy KeepContext AI on AWS Free Tier (Maintainers/Operators)
+
+This document is for maintainers who deploy and operate the service infrastructure.
+If you only consume the service, use `docs/SERVICE_CONSUMER_GUIDE.md` instead.
 
 This guide is tuned for a free-tier-conscious setup.
 
