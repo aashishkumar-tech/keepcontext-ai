@@ -1,0 +1,203 @@
+{
+  "name": "keepcontext-ai",
+  "displayName": "KeepContext AI",
+  "description": "Persistent AI memory and context retrieval for software development. Store decisions, query knowledge, and run AI agent workflows — all from VS Code.",
+  "version": "0.1.0",
+  "publisher": "keepcontext",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "AI",
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "memory",
+    "context",
+    "knowledge-graph",
+    "agents"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/keepcontext-ai"
+  },
+  "icon": "media/icon.png",
+  "main": "./out/extension.js",
+  "extensionDependencies": [
+    "github.copilot-chat"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "keepcontext-ai.context",
+        "fullName": "KeepContext AI",
+        "name": "keepcontext",
+        "description": "Retrieve and store persistent project context across chat sessions",
+        "isSticky": true,
+        "commands": [
+          {
+            "name": "recall",
+            "description": "Search stored project memories for relevant context"
+          },
+          {
+            "name": "remember",
+            "description": "Store new context that persists across all chat sessions"
+          },
+          {
+            "name": "ask",
+            "description": "Ask a question using LLM with project memory context"
+          }
+        ]
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "keepcontext",
+          "title": "KeepContext AI",
+          "icon": "media/sidebar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "keepcontext": [
+        {
+          "id": "keepcontext.memories",
+          "name": "Memories",
+          "icon": "$(database)"
+        },
+        {
+          "id": "keepcontext.agents",
+          "name": "Agents",
+          "icon": "$(hubot)"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "keepcontext.storeMemory",
+        "title": "KeepContext: Store Memory",
+        "icon": "$(add)"
+      },
+      {
+        "command": "keepcontext.storeSelection",
+        "title": "KeepContext: Store Selection as Memory"
+      },
+      {
+        "command": "keepcontext.queryContext",
+        "title": "KeepContext: Query Context",
+        "icon": "$(search)"
+      },
+      {
+        "command": "keepcontext.askQuestion",
+        "title": "KeepContext: Ask Question",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "keepcontext.runAgent",
+        "title": "KeepContext: Run Agent Workflow",
+        "icon": "$(play)"
+      },
+      {
+        "command": "keepcontext.refreshMemories",
+        "title": "KeepContext: Refresh Memories",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "keepcontext.deleteMemory",
+        "title": "KeepContext: Delete Memory",
+        "icon": "$(trash)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "keepcontext.storeSelection",
+          "group": "keepcontext@1",
+          "when": "editorHasSelection"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "keepcontext.storeMemory",
+          "when": "view == keepcontext.memories",
+          "group": "navigation"
+        },
+        {
+          "command": "keepcontext.refreshMemories",
+          "when": "view == keepcontext.memories",
+          "group": "navigation"
+        },
+        {
+          "command": "keepcontext.runAgent",
+          "when": "view == keepcontext.agents",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "keepcontext.deleteMemory",
+          "when": "view == keepcontext.memories",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "KeepContext AI",
+      "properties": {
+        "keepcontext.apiUrl": {
+          "type": "string",
+          "default": "http://localhost:8003",
+          "description": "Base URL of the KeepContext AI backend API"
+        },
+        "keepcontext.defaultMemoryType": {
+          "type": "string",
+          "default": "code",
+          "enum": [
+            "conversation",
+            "code",
+            "decision",
+            "documentation"
+          ],
+          "description": "Default memory type when storing new memories"
+        },
+        "keepcontext.agentMaxIterations": {
+          "type": "number",
+          "default": 3,
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Max review-loop iterations for agent workflows"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src/ --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.93.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "@vscode/test-electron": "^2.3.8",
+    "@vscode/vsce": "^3.7.1",
+    "eslint": "^8.56.0",
+    "glob": "^10.3.0",
+    "mocha": "^10.3.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

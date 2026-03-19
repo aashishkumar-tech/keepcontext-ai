@@ -1,0 +1,68 @@
+{
+    "telemetry.machineId": "68777e45c767a3dbdeb0cc6d2112916bacab18ee68cddc95ba9f5b7e2b615248",
+    "telemetry.devDeviceId": "18e4af5e-65d1-42ee-8cbb-f2c1517ff3b2",
+    "telemetry.sqmId": "{C2918804-6244-4250-97B9-16CF0FAE203C}",
+    "backupWorkspaces": {
+        "workspaces": [],
+        "folders": [],
+        "emptyWindows": [
+            {
+                "backupFolder": "1773931969976"
+            },
+            {
+                "backupFolder": "1773932078264"
+            }
+        ]
+    },
+    "windowControlHeight": 35,
+    "profileAssociations": {
+        "workspaces": {},
+        "emptyWindows": {
+            "1773931969976": "__default__profile__",
+            "1773932078264": "__default__profile__"
+        }
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#1f1f1f",
+    "windowSplash": {
+        "zoomLevel": 0,
+        "baseTheme": "vs-dark",
+        "colorInfo": {
+            "foreground": "#cccccc",
+            "background": "#1f1f1f",
+            "editorBackground": "#1f1f1f",
+            "titleBarBackground": "#181818",
+            "titleBarBorder": "#2b2b2b",
+            "activityBarBackground": "#181818",
+            "activityBarBorder": "#2b2b2b",
+            "sideBarBackground": "#181818",
+            "sideBarBorder": "#2b2b2b",
+            "statusBarBackground": "#181818",
+            "statusBarBorder": "#2b2b2b",
+            "statusBarNoFolderBackground": "#1f1f1f"
+        },
+        "layoutInfo": {
+            "sideBarSide": "left",
+            "editorPartMinWidth": 220,
+            "titleBarHeight": 35,
+            "activityBarWidth": 48,
+            "sideBarWidth": 300,
+            "auxiliaryBarWidth": 300,
+            "statusBarHeight": 22,
+            "windowBorder": false
+        }
+    },
+    "windowsState": {
+        "lastActiveWindow": {
+            "backupPath": "C:\\Users\\Aashish kumar\\Videos\\keepcontext-ai\\vscode-extension\\%TEMP%\\kc-clean\\Backups\\1773932078264",
+            "uiState": {
+                "mode": 1,
+                "x": 197,
+                "y": 61,
+                "width": 1203,
+                "height": 803
+            }
+        },
+        "openedWindows": []
+    }
+}

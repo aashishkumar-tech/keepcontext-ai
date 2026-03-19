@@ -1,0 +1,27 @@
+{
+  "retrieval_cases": [
+    {
+      "case_id": "retrieval-auth",
+      "query": "How does authentication work?",
+      "expected_memory_ids": ["mem-auth-1", "mem-auth-2"],
+      "top_k": 3
+    }
+  ],
+  "groundedness_cases": [
+    {
+      "case_id": "groundedness-auth",
+      "query": "Explain auth flow",
+      "top_k": 3,
+      "entity_name": "AuthService"
+    }
+  ],
+  "agent_cases": [
+    {
+      "case_id": "agent-auth",
+      "goal": "Implement auth endpoint",
+      "required_terms": ["token", "auth"],
+      "max_iterations": 2,
+      "require_approval": true
+    }
+  ]
+}
