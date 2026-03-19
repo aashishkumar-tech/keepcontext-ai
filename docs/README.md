@@ -6,6 +6,8 @@ This folder contains release and operations docs that are relevant for deploymen
 
 - `PRODUCTION_GO_LIVE_CHECKLIST.md` — production readiness checklist with owners and evidence requirements.
 - `LAUNCH_REPORT_2026-03-19.md` — latest launch execution report and outcomes.
+- `LAUNCH_REPO_LINK_GUIDE.md` — why repository links matter at launch and what to include in README.
+- `README_LAUNCH_TEMPLATE.md` — copy-paste README template for launch readiness.
 
 ## Related Docs Outside This Folder
 
