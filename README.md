@@ -99,6 +99,51 @@ make test
 pytest -v --cov=src --cov-report=term-missing
 ```
 
+## Use The VS Code Extension
+
+The VS Code extension is the fastest way to store memories and query context while coding.
+
+### 1. Install extension dependencies
+
+```bash
+cd vscode-extension
+npm install
+npm run compile
+```
+
+### 2. Run or install the extension
+
+Development mode:
+
+```bash
+# Open this repository in VS Code, then press F5
+```
+
+VSIX package mode:
+
+```bash
+cd vscode-extension
+npm run package
+code --install-extension keepcontext-ai-0.1.0.vsix
+```
+
+### 3. Configure backend URL in VS Code
+
+Open VS Code Settings and set:
+
+- `keepcontext.apiUrl`: `http://localhost:8003` (local backend) or your deployed API URL
+
+### 4. Start using commands
+
+From the Command Palette, run:
+
+- `KeepContext: Store Memory`
+- `KeepContext: Query Context`
+- `KeepContext: Ask Question`
+- `KeepContext: Run Agent Workflow`
+
+For complete extension details, see [vscode-extension/README.md](vscode-extension/README.md).
+
 ## API Endpoints
 
 | Method | Endpoint | Description |
