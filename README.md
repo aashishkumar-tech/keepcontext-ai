@@ -312,7 +312,32 @@ keepcontext-ai/
 
 - Ops docs index: [docs/README.md](docs/README.md)
 - Production launch checklist: [docs/PRODUCTION_GO_LIVE_CHECKLIST.md](docs/PRODUCTION_GO_LIVE_CHECKLIST.md)
+- Future vision roadmap: [docs/FUTURE_VISION.md](docs/FUTURE_VISION.md)
 - VS Code extension release checklist: [vscode-extension/RELEASE_CHECKLIST.md](vscode-extension/RELEASE_CHECKLIST.md)
+
+## Future Vision
+
+KeepContext AI is evolving as a service product focused on reliability, developer productivity, and scalable team usage.
+
+### Near-Term (0-3 Months)
+
+- Improve service-consumer onboarding and troubleshooting
+- Strengthen API usability with clearer examples and contracts
+- Enhance VS Code extension setup and command feedback
+
+### Mid-Term (3-6 Months)
+
+- Introduce stronger multi-tenant service controls
+- Add quotas/rate limits and improved operational observability
+- Expand service integration patterns for developer workflows
+
+### Long-Term (6-12 Months)
+
+- Deliver governance features for team and enterprise usage
+- Improve scaling and reliability for larger workloads
+- Expand ecosystem integrations beyond the initial extension
+
+For detailed roadmap items, see [docs/FUTURE_VISION.md](docs/FUTURE_VISION.md).
 
 ## Tech Stack
 
