@@ -50,6 +50,40 @@ curl -X POST "$BASE_URL/api/v1/context/query" \
 | Empty retrieval results | No memories stored yet | Store memories first, then query |
 | API returns auth error | Missing/invalid access credentials | Use valid service credentials |
 
+## 6. Response Contract and Error Handling
+
+Most endpoints follow a predictable JSON shape so clients can parse responses consistently.
+
+Success example:
+
+```json
+{
+  "data": {
+    "id": "mem_123",
+    "content": "Auth uses JWT with RS256",
+    "memory_type": "decision"
+  }
+}
+```
+
+Error example:
+
+```json
+{
+  "error": {
+    "code": "validation_error",
+    "message": "Invalid memory_type value"
+  }
+}
+```
+
+Recommended client behavior:
+
+- Treat 2xx responses as success and parse `data`.
+- Treat 4xx responses as client-actionable errors and show `error.message`.
+- Treat 5xx responses as transient service issues and retry with backoff.
+- For write operations, use idempotency safeguards in your client when retrying.
+
 ## Consumer vs Maintainer Docs
 
 - Consumer: this guide and root README service sections
