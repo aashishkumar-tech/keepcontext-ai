@@ -10,3 +10,8 @@ neo4j>=5.0
 langgraph>=0.2.0
 langchain-core>=0.3.0
 langchain-groq>=0.2.0
+
+# --- Dev & Testing Tools ---
+pytest>=7.0
+black>=24.0
+ruff>=0.1

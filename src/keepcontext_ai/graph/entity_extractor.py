@@ -4,7 +4,6 @@ Extracts software entities and relationships from memory content
 and stores them in the knowledge graph automatically.
 """
 
-
 from __future__ import annotations
 
 import json
@@ -31,15 +30,18 @@ _VALID_REL_TYPES = {rt.value for rt in RelationshipType}
 
 # --- Day 3: Pydantic models for structured extraction ---
 
+
 class Entity(BaseModel):
     name: str
     entity_type: str  # technology | concept | decision | person | service
     description: str
 
+
 class Relationship(BaseModel):
     source: str
     target: str
     relationship_type: str  # uses | implements | depends_on | replaces | configures
+
 
 class ExtractionResult(BaseModel):
     entities: list[Entity]
