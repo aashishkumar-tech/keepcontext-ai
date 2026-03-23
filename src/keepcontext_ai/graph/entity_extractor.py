@@ -1,14 +1,8 @@
-"""Automatic entity extraction from text using LLM.
-
-Extracts software entities and relationships from memory content
-and stores them in the knowledge graph automatically.
-"""
-
 from __future__ import annotations
 
 import json
 import logging
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Protocol
 
 from pydantic import BaseModel
 
@@ -23,6 +17,17 @@ if TYPE_CHECKING:
     from keepcontext_ai.llm.groq_service import GroqLLMService
 
 logger = logging.getLogger(__name__)
+
+# Valid relationship type values for validation
+_VALID_REL_TYPES = {rt.value for rt in RelationshipType}
+
+
+# Protocol for LLM service
+class LLMService(Protocol):
+    def generate(self, prompt: str) -> str: ...
+
+
+# --- Day 3: Pydantic models for structured extraction ---
 
 # Valid relationship type values for validation
 _VALID_REL_TYPES = {rt.value for rt in RelationshipType}
@@ -62,7 +67,7 @@ def build_structured_entity_extraction_prompt(text: str) -> str:
 
 
 def extract_entities_and_relationships(
-    llm_service: object, text: str
+    llm_service: LLMService, text: str
 ) -> ExtractionResult:
     """Extract entities and relationships (with descriptions) using LLM and return structured result."""
     prompt = build_structured_entity_extraction_prompt(text)
