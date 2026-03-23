@@ -6,10 +6,13 @@ and stores them in the knowledge graph automatically.
 
 
 from __future__ import annotations
+
 import json
 import logging
 from typing import TYPE_CHECKING
+
 from pydantic import BaseModel
+
 from keepcontext_ai.graph.schemas import (
     EntityCreate,
     RelationshipCreate,
