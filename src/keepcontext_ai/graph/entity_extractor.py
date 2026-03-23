@@ -61,7 +61,9 @@ def build_structured_entity_extraction_prompt(text: str) -> str:
     )
 
 
-def extract_entities_and_relationships(llm_service: object, text: str) -> ExtractionResult:
+def extract_entities_and_relationships(
+    llm_service: object, text: str
+) -> ExtractionResult:
     """Extract entities and relationships (with descriptions) using LLM and return structured result."""
     prompt = build_structured_entity_extraction_prompt(text)
     raw_response = llm_service.generate(prompt)
