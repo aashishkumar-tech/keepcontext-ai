@@ -10,6 +10,9 @@ import json
 import logging
 from typing import TYPE_CHECKING
 
+from pydantic import BaseModel
+from typing import List
+
 from keepcontext_ai.graph.schemas import (
     EntityCreate,
     RelationshipCreate,
@@ -24,6 +27,47 @@ logger = logging.getLogger(__name__)
 
 # Valid relationship type values for validation
 _VALID_REL_TYPES = {rt.value for rt in RelationshipType}
+
+
+# --- Day 3: Pydantic models for structured extraction ---
+class Entity(BaseModel):
+    name: str
+    entity_type: str  # technology | concept | decision | person | service
+    description: str
+
+class Relationship(BaseModel):
+    source: str
+    target: str
+    relationship_type: str  # uses | implements | depends_on | replaces | configures
+
+class ExtractionResult(BaseModel):
+    entities: List[Entity]
+    relationships: List[Relationship]
+
+
+def build_structured_entity_extraction_prompt(text: str) -> str:
+    """Prompt for extracting entities (with description) and relationships."""
+    return (
+        "Analyze this technical note. Extract:\n"
+        "1. ENTITIES: technologies, concepts, components, decisions\n"
+        "2. RELATIONSHIPS: how they connect\n\n"
+        "Text: {text}\n\n"
+        "Entity fields: name, entity_type (technology, concept, decision, service, person), description\n"
+        "Relationship fields: source, target, relationship_type (uses, implements, depends_on, replaces, configures)\n"
+        "Return a JSON object with 'entities' and 'relationships' arrays."
+    ).format(text=text)
+
+
+def extract_entities_and_relationships(llm_service, text: str) -> ExtractionResult:
+    """Extract entities and relationships (with descriptions) using LLM and return structured result."""
+    prompt = build_structured_entity_extraction_prompt(text)
+    raw_response = llm_service.generate(prompt)
+    try:
+        data = ExtractionResult.parse_raw(raw_response)
+    except Exception:
+        logger.warning("Failed to parse structured extraction result")
+        raise
+    return data
 
 
 class EntityExtractor:
