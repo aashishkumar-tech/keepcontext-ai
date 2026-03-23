@@ -6,7 +6,7 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-teal?logo=fastapi)
 ![ChromaDB](https://img.shields.io/badge/ChromaDB-latest-orange)
 ![Neo4j](https://img.shields.io/badge/Neo4j-5.x-008CC1?logo=neo4j)
-![Coverage](https://img.shields.io/badge/coverage-82%25-brightgreen)
+![Coverage](https://img.shields.io/badge/coverage-90%25-brightgreen)
 ![LangGraph](https://img.shields.io/badge/LangGraph-0.2.x-purple)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
